@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Todo application</h1>
-    <hr/>
+    <hr>
     <TodoList 
     :todos="todos"
     @remove-todo="removeTodo" />
@@ -10,6 +10,7 @@
 
 <script>
 import TodoList from '@/components/TodoList'
+
 
 export default {
   name: 'App',

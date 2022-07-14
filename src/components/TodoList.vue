@@ -5,19 +5,20 @@
     v-for="todo in todos"
     :key="todo.id"
     :todo="todo"
-    @remove-todo="removeTodo"
-    />
+    @remove-todo="removeTodo"/>
     </ul>
   </div>
 </template>
 
 <script>
-import TodoItem from "@/components/TodoItem";
+import TodoItem from '../components/TodoItem'
+import TodoNew from '../components/TodoNew'
+
 
 export default {
   props: ['todos'],
   components: {
-    TodoItem
+    TodoItem, TodoNew
   },
   methods: {
     removeTodo(id) {
