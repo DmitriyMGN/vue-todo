@@ -2,7 +2,9 @@
   <div id="app">
     <h1>Todo application</h1>
     <hr/>
-    <TodoList :todos="todos"/>
+    <TodoList 
+    :todos="todos"
+    @remove-todo="removeTodo" />
   </div>
 </template>
 
@@ -14,10 +16,15 @@ export default {
   data() {
     return {
       todos: [
-        {id: 1, text: 'Помыть машину'},
-        {id: 2, text: 'Пропылесосить'},
-        {id: 3, text: 'Погулять'}
+        {id: 1, text: 'Помыть машину', completed: false},
+        {id: 2, text: 'Пропылесосить', completed: false},
+        {id: 3, text: 'Погулять', completed: false}
       ]
+    }
+  },
+  methods: {
+    removeTodo(id) {
+      this.todos = this.todos.filter(t => t.id !== id)
     }
   },
   components: {
