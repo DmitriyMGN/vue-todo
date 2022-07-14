@@ -20,7 +20,7 @@ export default {
       if(this.title.value !== 0) {
         const newTitle = {
           id: Date.now(),
-          text: this.title,
+          title: this.title,
           completed: false
         }
         this.$emit('on-submit', newTitle);
