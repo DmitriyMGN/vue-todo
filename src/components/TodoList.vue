@@ -2,9 +2,10 @@
   <div>
     <ul>
     <TodoItem
-    v-for="todo in todos"
+    v-for="(todo,i) in todos"
     :key="todo.id"
     :todo="todo"
+    :index="i + 1"
     @remove-todo="removeTodo"/>
     </ul>
   </div>
@@ -12,13 +13,12 @@
 
 <script>
 import TodoItem from '../components/TodoItem'
-import TodoNew from '../components/TodoNew'
 
 
 export default {
   props: ['todos'],
   components: {
-    TodoItem, TodoNew
+    TodoItem
   },
   methods: {
     removeTodo(id) {

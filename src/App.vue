@@ -1,37 +1,41 @@
 <template>
   <div id="app">
     <h1>Todo application</h1>
-    <hr>
-    <TodoList 
-    :todos="todos"
-    @remove-todo="removeTodo" />
+    <TodoNew @on-submit="onSubmit" />
+    <hr />
+    <TodoList :todos="todos" @remove-todo="removeTodo" />
   </div>
 </template>
 
 <script>
-import TodoList from '@/components/TodoList'
-
+import TodoList from "@/components/TodoList";
+import TodoNew from "@/components/TodoNew";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      todos: [
-        {id: 1, text: 'Помыть машину', completed: false},
-        {id: 2, text: 'Пропылесосить', completed: false},
-        {id: 3, text: 'Погулять', completed: false}
-      ]
-    }
+      todos: [],
+    };
+  },
+  created() {
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=8")
+      .then((response) => response.json())
+      .then((json) => (this.todos = json));
   },
   methods: {
     removeTodo(id) {
-      this.todos = this.todos.filter(t => t.id !== id)
-    }
+      this.todos = this.todos.filter((t) => t.id !== id);
+    },
+    onSubmit(newTitle) {
+      this.todos.push(newTitle);
+    },
   },
   components: {
-    TodoList
-  }
-}
+    TodoList,
+    TodoNew,
+  },
+};
 </script>
 
 <style>
